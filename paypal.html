@@ -1,0 +1,139 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SP Merchandise Corporation - Credit Card Payment</title>
+
+<script language="JavaScript" type="text/javascript">
+
+//function to check empty fields
+
+function isEmpty(strfield1, strfield2, strfield3) {
+
+//change "field1, field2 and field3" to your field names
+strfield1 = document.forms[0].os0.value 
+strfield2 = document.forms[0].item_name.value
+strfield3 = document.forms[0].amount.value
+
+  //name field
+    if (strfield1 == "" || strfield1 == null || !isNaN(strfield1) || strfield1.charAt(0) == ' ')
+    {
+	alert("Please fill up the \"Name of our Sales Rep\"")
+    return false;
+    }
+
+  //payment for field 
+    if (strfield2 == "" || strfield2 == null || strfield2.charAt(0) == ' ')
+    {
+	alert("Please fill up the \"Payment for\"")
+    return false;
+    }
+
+  //amount field 
+    if (strfield3 == "" || strfield3 == null || isNaN(strfield3) || strfield3.charAt(0) == ' ')
+    { 
+	alert("Please fill up the \"Amount in US$\" \nAmount in number OR with decimal only. \nMaximum 2 decimal place only")
+    return false; 
+    } 
+	
+    return true;
+}
+
+//function to check valid email address
+function isValidEmail(strEmail){
+  validRegExp = /^[^@]+@[^@]+.[a-z]{2,}$/i;
+  strEmail = document.forms[0].os3.value;
+
+   // search email text for regular exp matches
+    if (strEmail.search(validRegExp) == -1) 
+    {
+	  alert('A valid Sales Rep\'s e-mail address is required.\nPlease amend and retry.');
+      return false;
+    } 
+    return true; 
+}
+
+//function that performs all functions, defined in the onsubmit event handler
+
+function check(form){
+if (isEmpty(form.os0)){ 
+  if (isEmpty(form.item_name)){ 
+    if (isEmpty(form.amount)){ 
+	  if (isValidEmail(form.os3)){ 
+		 return true;
+	  }
+	}
+  }
+}
+return false;
+}
+
+</script>
+<style type="text/css">
+<!--
+body {
+	background-color: #001d3a;
+}
+body,td,th {
+	color: #FFF;
+}
+-->
+</style></head>
+<body>
+
+<table width="590" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <th width="600" bgcolor="#666666"><strong>.:: Credit Card Payment via PayPal.com ::.</strong></th>
+  </tr>
+</table>
+
+<form name="formPaypal" action="https://www.paypal.com/cgi-bin/webscr" onSubmit="return check(this);" method="post">
+<input type="hidden" name="cmd" value="_xclick">
+<input type="hidden" name="no_note" value="1">
+<input type="hidden" name="business" value="ac@SPMerchandise.com">
+<input type="hidden" name="currency_code" value="USD">
+<INPUT TYPE="hidden" name="tax_rate" value="2.9">
+
+<table width="600" align="center">
+<tr><td width="170"><input type="hidden" name="on0" value="Sales Rep">Name of our Sales Rep:</td><td width="418"><input type="text" name="os0" maxlength="30" size="30"></td></tr>
+<tr><td><input type="hidden" name="on3" value="Sales Rep's E-mail">Sales Rep's E-mail:</td><td><input type="text" name="os3" maxlength="50" size="50"></td></tr>
+<tr><td><input type="hidden" name="on1" value="PI #">Proforma Invoice #:</td><td><input type="text" name="os1" maxlength="30" size="30"></td></tr>
+<tr><td><input type="hidden" name="on2" value="PO #">Purchase Order #:</td><td><input type="text" name="os2" maxlength="30" size="30"></td></tr>
+<tr><td><input type="hidden" name="item_name2">Payment for:</td><td><input name="item_name" type="text" maxlength="50" size="50"></td></tr>
+<tr><td>Amount in US$:</td><td> <input name="amount" type="text" id="amount" maxlength="15" size="30">
+eg. 1000.00</td></tr>
+</table>
+<br />
+<table width="590" align="center">
+  <tr>
+    <td width="558"><div align="center">Credit card processing fee @ 3.9% of above amount  will be auto charged as &quot;Sales Tax&quot;.</div></td>
+    <td width="20">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" value="Submit" />
+    </div></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>* For use on IE, Firefox and Chrome.</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</form>
+</body>
+</html>
